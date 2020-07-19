@@ -1,0 +1,96 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100;
+    background: #1b1d28;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15%;
+    width: 300px;
+    height: 350px;
+    background: #fff;
+}
+
+.container .output{
+    padding: 10px 0 0 0;
+    margin: 10px 0 0 0;
+    width: 250px;
+    height: 50px;
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.container .output .result{
+    display: block;
+    padding: 0 10px;
+    text-align: right;
+}
+
+.container .input span{
+    padding-top: 12px;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    width: 55px;
+    height: 45px;
+    background: #fff;
+    transition: 0.3s ease;
+    cursor: pointer;
+    border-radius: 40%;
+    font-size: 18px;
+}
+
+.container .input .number{
+    font-weight: 700;
+}
+
+.container .input .operator{
+    background: #d8d8d8;
+    transition: 0.3s ease;
+}
+
+.container .input .equals{
+    position: absolute;
+    width: 120px;
+    float: right;
+    z-index: 10;
+    border-radius: 20px 15px 15px 20px;
+    padding-left: 25px;
+    margin: 1px 0 0 5px;
+    text-align: left;
+    box-sizing: inherit;
+    background: #000000;
+    color: #fff;
+    transition: 0.3s ease;
+    padding-top: 12px;
+}
+
+.container .input .operator:hover, .container .input .number:hover{
+    background: #f2f2f2;
+}
+
+.container .input .equals:hover{
+    background: #1b1d28;
+}
+
+.container .input div{
+    margin: 5px 0 0 0;
+}
+
+.input{
+    margin-top: 35px;
+}
