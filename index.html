@@ -5,36 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
     <title>Calculator</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/6e502b8152.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
         <div class="output">
-            <span class="result">12 x 6</span>
+            <span class="result" data-js="output">0</span>
         </div>
         <div class="input">
-            <div class="first-row">
-                <span class="number" data-js="n1">7</span>
-                <span class="number" data-js="n2">8</span>
-                <span class="number" data-js="n3">9</span>
-                <span class="operator" data-js="division">/</span>
+            <div>
+                <span class="operator" data-js="number">π</span>
+                <span class="operator" data-js="operator">%</span>
+                <span class="operator backspace" data-js="backspace"><i class="fas fa-backspace"></i></span>
+                <span class="operator ce" data-js="ce">CE</span>
             </div>
-            <div class="second-row">
-                <span class="number" data-js="n4">4</span>
-                <span class="number" data-js="n5">5</span>
-                <span class="number" data-js="n6">6</span>
-                <span class="operator" data-js="multiplication">X</span>
+            <div>
+                <span class="operator" data-js="operator">(</span>
+                <span class="operator" data-js="operator">)</span>
+                <span class="operator sqroot" data-js="operator"><i class="fas fa-square-root-alt"></i></span>
+                <span class="operator" data-js="operator">x²</span>
             </div>
-            <div class="third-row">
-                <span class="number" data-js="n7">1</span>
-                <span class="number" data-js="n8">2</span>
-                <span class="number" data-js="n9">3</span>
-                <span class="operator" data-js="subtraction">-</span>
+            <div>
+                <span class="number" data-js="number">7</span>
+                <span class="number" data-js="number">8</span>
+                <span class="number" data-js="number">9</span>
+                <span class="operator" data-js="operator">/</span>
             </div>
-            <div class="fourth-row">
-                <span class="number" data-js="n0">0</span>
-                <span class="operator" data-js="dot">.</span>
-                <span class="operator" data-js="sum">+</span>
+            <div>
+                <span class="number" data-js="number">4</span>
+                <span class="number" data-js="number">5</span>
+                <span class="number" data-js="number">6</span>
+                <span class="operator" data-js="operator">X</span>
+            </div>
+            <div>
+                <span class="number" data-js="number">1</span>
+                <span class="number" data-js="number">2</span>
+                <span class="number" data-js="number">3</span>
+                <span class="operator" data-js="operator">-</span>
+            </div>
+            <div>
+                <span class="number" data-js="number">0</span>
+                <span class="operator" data-js="operator">.</span>
+                <span class="operator" data-js="operator">+</span>
                 <span class="equals" data-js="equals">=</span>
             </div>
         </div>
