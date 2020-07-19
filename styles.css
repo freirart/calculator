@@ -26,18 +26,28 @@ body{
 }
 
 .container .output{
-    padding: 10px 0 0 0;
-    margin: 10px 0 0 0;
+    position: relative;
     width: 250px;
-    height: 50px;
+    height: 55px;
+}
+
+.container .output .result{
+    position: absolute;
+    top: 25px;
+    height: 45px;
+    width: 100%;
+    display: block;
+    text-align: right;
     font-size: 38px;
     font-weight: 800;
 }
 
-.container .output .result{
-    display: block;
-    padding: 0 10px;
+.container .output .previous{
+    position: absolute;
+    height: 10px 0 0 0;
+    width: 100%;
     text-align: right;
+    color: #bababa;
 }
 
 .container .input span{
@@ -70,11 +80,16 @@ body{
 }
 
 .container .input .operator.ce:hover{
-    color: #ff5659;
+    background: #ff3236;
 }
 
 .container .input .operator.backspace{
     padding-right: 2px;
+}
+
+.container .input .operator.power{
+    padding-top: 6px;
+    margin-top: 4px;
 }
 
 .container .input .equals{
@@ -107,4 +122,9 @@ body{
 
 .input{
     margin-top: 35px;
+}
+
+sup{
+    font-size: smaller;
+    vertical-align: super;
 }
