@@ -1,6 +1,9 @@
 # Calculator
+![demonstration](https://www.udrop.com/plugins/imageviewer/site/direct.php?s=1iRx&/calc.gif)
 
-Inspired by the 23rd exercise of ninja javascript course, I decided to make this calculator in a separated repository so that its editing would be easier and clean.
+Ninja JavaScript Course by Fernando Daciuk - Exercise 23.
+
+Inspired by <a href="https://dribbble.com/martinmroc" target="_blank">Martin Mroč's work</a> <i>Apple Watch UI - Business</i>: ```https://dribbble.com/shots/10826886-Apple-Watch-UI-Business```
 
 Leave a pull request if you have anything to add or share.
 
