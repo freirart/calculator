@@ -18,6 +18,8 @@
         '%': function(a, b){return a % b},
     };
 
+    var isAnAnswer = false;     //when a number is typed after the answer is given, the outputs vanish
+
     function calculate(numbers, op){
         return Number(operations[op](numbers[0], numbers[1]).toFixed(2));
     }
@@ -26,8 +28,21 @@
         return $output.innerHTML === '0' || $output.innerHTML === '';
     }
 
+    function isPi(value){
+        return value === 'π';
+    }
+
+    function clearAll(){
+        $output.innerHTML = '';
+        $previous.innerHTML = '';
+        numbers = [];
+        op = '';
+        isAnAnswer = false;
+    }
+
     $btnNumber.forEach((element) => {
         element.addEventListener('click', function(){
+            isAnAnswer ? clearAll() : '';
             isNull() ? $output.innerHTML = element.innerHTML: $output.innerHTML += element.innerHTML;
         }, false);
     });
@@ -35,10 +50,15 @@
     $btnOperator.forEach((element) => {
         element.addEventListener('click', function(){
             if(element.innerHTML !== '.'){
-                op = element.innerHTML.toLowerCase();
-                numbers.push(+$output.innerHTML);
-                $previous.innerHTML = $output.innerHTML +  ' ' + element.innerHTML.toLowerCase() + ' ';
-                $output.innerHTML = '0';
+                var output = $output.innerHTML;
+                if(!isNull()){
+                    op = element.innerHTML.toLowerCase();
+                    isPi(output) ? numbers.push(Math.PI) : numbers.push(+output.replace(' ', ''));
+                    $previous.innerHTML = output +  ' ' + element.innerHTML.toLowerCase() + ' ';
+                    $output.innerHTML = '0';
+                }else{
+                    if(element.innerHTML === '-') $output.innerHTML = element.innerHTML.toLowerCase() + ' ';
+                }
             }else{
                 $output.innerHTML += '.';   
             }
@@ -48,13 +68,7 @@
     $btnBackspace.addEventListener('click', function(){
         var output = $output.innerHTML;
 
-        if(output.length > 3){
-            var lastChar = output.endsWith(' ') ? output.slice(output.length-3) : output.slice(output.length-1);
-        }else{
-            var lastChar = output.endsWith(' ') ? output.slice(output.length-2) : output.slice(output.length-1);
-        }
-
-        $output.innerHTML = output.replace(lastChar, '');
+        $output.innerHTML = output.slice(0, output.length-1);
         
         isNull() ? $output.innerHTML = '0' : '';
 
@@ -69,25 +83,22 @@
 
     $equals.addEventListener('click', function(){
        
+        var output = $output.innerHTML;
+        isAnAnswer = true;
+
         if($previous.innerHTML !== ''){
-            $previous.innerHTML += $output.innerHTML + ' = ';
-            
-            if($output.innerHTML === 'π'){
-                if($output.innerHTML !== ''){
-                    numbers.push(Math.PI);
-                    $output.innerHTML = calculate(numbers, op);
-                    numbers = [];
-                }else{
-                    $output.innerHTML = Math.PI.toFixed(2);
-                }
-            }else{
-                numbers.push(+$output.innerHTML);
-                $output.innerHTML = calculate(numbers, op);
-                numbers = [];
-            }
+            isPi(output) ? numbers.push(Math.PI) : numbers.push(+$output.innerHTML);
+            $previous.innerHTML += output + ' = ';
+            $output.innerHTML = calculate(numbers, op);
+            numbers = [];
+        }else if(isPi(output)){
+            $previous.innerHTML += output + ' = ';
+            $output.innerHTML = Math.PI.toFixed(2);
         }
         
     }, false);
+
+    
 
 
 })(window, document);
