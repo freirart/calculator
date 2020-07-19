@@ -1,5 +1,5 @@
 # Calculator
-<div align="center">![demonstration](https://www.udrop.com/plugins/imageviewer/site/direct.php?s=1iRx&/calc.gif)</div>
+<div align="center"> ![demonstration](https://www.udrop.com/plugins/imageviewer/site/direct.php?s=1iRx&/calc.gif) </div>
 
 Ninja JavaScript Course by Fernando Daciuk - Exercise 23.
 
