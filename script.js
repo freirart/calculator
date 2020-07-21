@@ -49,8 +49,8 @@
 
     $btnOperator.forEach((element) => {
         element.addEventListener('click', function(){
+            var output = $output.innerHTML;
             if(element.innerHTML !== '.'){
-                var output = $output.innerHTML;
                 if(!isNull()){
                     op = element.innerHTML.toLowerCase();
                     isPi(output) ? numbers.push(Math.PI) : numbers.push(+output.replace(' ', ''));
@@ -60,7 +60,7 @@
                     if(element.innerHTML === '-') $output.innerHTML = element.innerHTML.toLowerCase() + ' ';
                 }
             }else{
-                $output.innerHTML += '.';   
+                if(!output.match(/\./g)) $output.innerHTML += '.';
             }
         }, false);
     });
