@@ -43,6 +43,10 @@ body{
     font-weight: 800;
 }
 
+.container .output .result.res-system{
+    opacity: 0.3;
+}
+
 .container .output .previous{
     position: absolute;
     height: 10px 0 0 0;
