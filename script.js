@@ -18,9 +18,7 @@
         '%': function(a, b){return a % b},
     };
 
-    var operationCount = 0;
-
-    var isAnAnswer = false;     //when a number is typed after the answer is given, the outputs vanish
+    var isAnAnswer = false;
 
     function calculate(numbers, op){
         return Number(operations[op](numbers[0], numbers[1]).toFixed(2));
@@ -44,7 +42,6 @@
 
     $btnNumber.forEach((element) => {
         element.addEventListener('click', function(){
-            isAnAnswer ? clearAll() : '';
             isNull() ? $output.innerHTML = element.innerHTML: $output.innerHTML += element.innerHTML;
         }, false);
     });
@@ -53,7 +50,6 @@
         element.addEventListener('click', function(){
             var output = $output.innerHTML;
             if(element.innerHTML !== '.'){
-                isAnAnswer = false;
                 if(!isNull()){
                     isPi(output) ? numbers.push(Math.PI) : numbers.push(+output.replace(' ', ''));
                     op.push(element.innerHTML.toLowerCase());
@@ -90,13 +86,13 @@
     $equals.addEventListener('click', function(){
        
         var output = $output.innerHTML;
-        isAnAnswer = true;
 
         if($previous.innerHTML !== ''){
             isPi(output) ? numbers.push(Math.PI) : numbers.push(+$output.innerHTML);
             $previous.innerHTML += output + ' = ';
             $output.innerHTML = calculate(numbers, op);
-            numbers = [calculate(numbers, op)];
+            numbers = [];
+            op = [];
         }else if(isPi(output)){
             $previous.innerHTML += output + ' = ';
             $output.innerHTML = Math.PI.toFixed(2);
