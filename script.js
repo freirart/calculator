@@ -9,7 +9,7 @@
     var $previous = doc.querySelector('span[data-js="previous"]');
 
     var numbers = [];
-    var op = '';
+    var op = [];
     var operations = {
         '+': function(a, b){return a + b},
         '-': function(a, b){return a - b},
@@ -17,6 +17,8 @@
         '/': function(a, b){return a / b},
         '%': function(a, b){return a % b},
     };
+
+    var operationCount = 0;
 
     var isAnAnswer = false;     //when a number is typed after the answer is given, the outputs vanish
 
@@ -33,10 +35,10 @@
     }
 
     function clearAll(){
-        $output.innerHTML = '';
+        $output.innerHTML = '0';
         $previous.innerHTML = '';
         numbers = [];
-        op = '';
+        op = [];
         isAnAnswer = false;
     }
 
@@ -51,11 +53,20 @@
         element.addEventListener('click', function(){
             var output = $output.innerHTML;
             if(element.innerHTML !== '.'){
+                isAnAnswer = false;
                 if(!isNull()){
-                    op = element.innerHTML.toLowerCase();
                     isPi(output) ? numbers.push(Math.PI) : numbers.push(+output.replace(' ', ''));
-                    $previous.innerHTML = output +  ' ' + element.innerHTML.toLowerCase() + ' ';
+                    op.push(element.innerHTML.toLowerCase());
+                    if(!numbers[1]){
+                        $previous.innerHTML = output +  ' ' + op[0] + ' ';
+                    }else{
+                        var calc = calculate(numbers, op[0]);
+                        $previous.innerHTML = calc +  ' ' + op[1] + ' ';
+                        op.shift();
+                        numbers = [calc];
+                    }
                     $output.innerHTML = '0';
+                    
                 }else{
                     if(element.innerHTML === '-') $output.innerHTML = element.innerHTML.toLowerCase() + ' ';
                 }
@@ -74,12 +85,7 @@
 
     }, false);
 
-    $btnCE.addEventListener('click', function(){
-        $output.innerHTML = '0';
-        $previous.innerHTML = '';
-        numbers = [];
-        op = '';
-    }, false);
+    $btnCE.addEventListener('click', clearAll, false);
 
     $equals.addEventListener('click', function(){
        
@@ -90,7 +96,7 @@
             isPi(output) ? numbers.push(Math.PI) : numbers.push(+$output.innerHTML);
             $previous.innerHTML += output + ' = ';
             $output.innerHTML = calculate(numbers, op);
-            numbers = [];
+            numbers = [calculate(numbers, op)];
         }else if(isPi(output)){
             $previous.innerHTML += output + ' = ';
             $output.innerHTML = Math.PI.toFixed(2);
