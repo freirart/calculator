@@ -18,14 +18,15 @@
         '%': function(a, b){return a % b},
     };
 
-    var isAnAnswer = false;
+    var isDefault = true;
 
     function calculate(numbers, op){
         return Number(operations[op](numbers[0], numbers[1]).toFixed(2));
     }
 
     function isNull(){
-        return $output.innerHTML === '0' || $output.innerHTML === '';
+        //the 'or' operator condition is used in the backspace function
+        return $output.innerHTML === '0' || $output.innerHTML === ''; 
     }
 
     function isPi(value){
@@ -37,12 +38,13 @@
         $previous.innerHTML = '';
         numbers = [];
         op = [];
-        isAnAnswer = false;
+        isDefault = true;
     }
 
     $btnNumber.forEach((element) => {
         element.addEventListener('click', function(){
-            isNull() ? $output.innerHTML = element.innerHTML: $output.innerHTML += element.innerHTML;
+            isNull() ? $output.innerHTML = element.innerHTML : $output.innerHTML += element.innerHTML;
+            isDefault = false;
         }, false);
     });
 
@@ -50,7 +52,7 @@
         element.addEventListener('click', function(){
             var output = $output.innerHTML;
             if(element.innerHTML !== '.'){
-                if(!isNull()){
+                if(!isDefault || !isNull()){
                     isPi(output) ? numbers.push(Math.PI) : numbers.push(+output.replace(' ', ''));
                     op.push(element.innerHTML.toLowerCase());
                     if(!numbers[1]){
@@ -62,6 +64,7 @@
                         numbers = [calc];
                     }
                     $output.innerHTML = '0';
+                    isDefault = true;
                     
                 }else{
                     if(element.innerHTML === '-') $output.innerHTML = element.innerHTML.toLowerCase() + ' ';
@@ -76,7 +79,7 @@
         var output = $output.innerHTML;
 
         $output.innerHTML = output.slice(0, output.length-1);
-        
+
         isNull() ? $output.innerHTML = '0' : '';
 
     }, false);
