@@ -99,13 +99,14 @@ body{
     float: right;
     z-index: 10;
     border-radius: 20px 15px 15px 20px;
-    padding-left: 25px;
-    margin: 1px 0 0 18px;
+    padding-left: 23px;
+    margin: 3px 0 0 18px;
     text-align: left;
     background: #000000;
     color: #fff;
     transition: 0.3s ease;
-    padding-top: 10px;
+    padding-top: 4px;
+    font-size: 30px;
 }
 
 .container .input .operator:hover, 
