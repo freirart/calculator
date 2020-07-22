@@ -10,7 +10,7 @@ body{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    width: 100;
+    width: 100%;
     background: #1b1d28;
     user-select: none;
 }
@@ -49,7 +49,7 @@ body{
 
 .container .output .previous{
     position: absolute;
-    height: 10px 0 0 0;
+    height: 10px;
     width: 100%;
     text-align: right;
     color: #bababa;
