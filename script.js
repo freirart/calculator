@@ -29,17 +29,12 @@
         $btnNumber.forEach((element) => {
             element.addEventListener('click', handleClickNumber, false);
         });
-    
         $btnOperator.forEach((element) => {
             element.addEventListener('click', handleClickOperation, false);
         });
-    
         $btnBackspace.addEventListener('click', handleClickBackspace, false);
-    
         $btnCE.addEventListener('click', clearAll, false);
-    
         $equals.addEventListener('click', handleClickEquals, false);
-
         clearAll();
     }
 
@@ -51,26 +46,24 @@
     }
 
     function handleClickOperation(){
-        var output = $output.innerHTML;
         if(this.innerHTML !== '.'){
             if(!isNull() || !isDefault()){
-                isPi(output) ? numbers.push(Math.PI) : numbers.push(+output.replace(' ', ''));
+                pushNumber();
                 op.push(this.innerHTML.toLowerCase());
                 if(numbers[1] === undefined){
-                    $previous.innerHTML = output +  ' ' + op[0] + ' ';
-                    restart = false;
+                    $previous.innerHTML = getCurrentOutput() +  ' ' + op[0] + ' ';
                 }else{
                     var calc = calculate(numbers, op[0]);
                     $previous.innerHTML = calc +  ' ' + op[1] + ' ';
                     op.shift();
                     numbers = [calc];
-                    restart = false;
                 }
+                restart = false;
                 $output.innerHTML = '0';
                 isDefault(true);
             }else{
                 if(this.innerHTML === '-') {
-                    $output.innerHTML = this.innerHTML.toLowerCase() + ' ';
+                    $output.innerHTML = this.innerHTML + ' ';
                     restart = false;
                 }
             }
@@ -83,21 +76,20 @@
     }
 
     function handleClickBackspace(){
-
+        $output.innerHTML = getCurrentOutput().slice(0, getCurrentOutput().length-1);
+        isNull() ? $output.innerHTML = '0' : '';
     }
 
     function handleClickEquals(){
-        var output = $output.innerHTML;
-    
         if($previous.innerHTML !== ''){
-            isPi(output) ? numbers.push(Math.PI) : numbers.push(+$output.innerHTML);
-            $previous.innerHTML += output + ' = ';
+            pushNumber();
+            $previous.innerHTML += getCurrentOutput() + ' = ';
             $output.innerHTML = calculate(numbers, op);
             numbers = [];
             op = [];
             restart = true;
         }else if(isPi(output)){
-            $previous.innerHTML += output + ' = ';
+            $previous.innerHTML += getCurrentOutput() + ' = ';
             $output.innerHTML = Math.PI.toFixed(2);
             restart = true;
         }
@@ -128,6 +120,14 @@
         check !== undefined ? def = check : '';
         !check ? $output.classList.remove('res-system') : $output.classList.add('res-system');
         return def;
+    }
+
+    function pushNumber(){
+        isPi(getCurrentOutput()) ? numbers.push(Math.PI) : numbers.push(+getCurrentOutput());
+    }
+
+    function getCurrentOutput(){
+        return $output.innerHTML;
     }
 
     initialize();
