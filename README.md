@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img alt="Design+Code" src="https://www.udrop.com/plugins/imageviewer/site/direct.php?s=1iRx&/calc.gif" />
+    <img alt="preview" height="500" src="https://raw.githubusercontent.com/freirart/calculator/master/preview-calculator.gif?token=AKG4FJIZHMNF7GD6A6TOZS27HQNSE" />
     <br>
     ➕➖Calculator✖➗
 </h1>
