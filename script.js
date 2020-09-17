@@ -68,7 +68,7 @@
                 }
             }
         }else{
-            if(!output.match(/\./g)){
+            if(!$output.match(/\./g)){
                 $output.innerHTML += '.';
                 restart = false;
             }
